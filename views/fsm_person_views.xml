@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_fsm_person_form_hr_bridge" model="ir.ui.view">
+        <field name="name">fsm.person.form.hr.bridge</field>
+        <field name="model">fsm.person</field>
+        <field name="inherit_id" ref="fieldservice.fsm_person_form"/>
+        <field name="arch" type="xml">
+            <field name="calendar_id" position="after">
+                <field name="partner_id" invisible="1" groups="hr.group_hr_user"/>
+                <field
+                    name="employee_id"
+                    domain="[('work_contact_id', '=', partner_id)]"
+                    groups="hr.group_hr_user"
+                    options="{'no_create': True}"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="view_fsm_person_list_hr_bridge" model="ir.ui.view">
+        <field name="name">fsm.person.list.hr.bridge</field>
+        <field name="model">fsm.person</field>
+        <field name="inherit_id" ref="fieldservice.fsm_person_list"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field
+                    name="employee_id"
+                    optional="hide"
+                    groups="hr.group_hr_user"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_fieldservice_hr_bridge" model="ir.ui.view">
+        <field name="name">res.partner.form.fieldservice.hr.bridge</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="fieldservice.fsm_partner_fields"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button
+                    name="action_open_fsm_person_bridge"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-wrench"
+                    invisible="fsm_person_bridge_count == 0"
+                    groups="fieldservice.group_fsm_user"
+                >
+                    <field
+                        name="fsm_person_bridge_count"
+                        string="FS Worker"
+                        widget="statinfo"
+                    />
+                </button>
+            </div>
+
+            <field name="fsm_person" position="after">
+                <button
+                    name="action_create_fsm_person_bridge"
+                    type="object"
+                    string="Create FS Worker"
+                    class="btn-link"
+                    invisible="fsm_person_bridge_count != 0"
+                    groups="fieldservice.group_fsm_dispatcher"
+                />
+                <button
+                    name="action_open_fsm_person_bridge"
+                    type="object"
+                    string="Open FS Worker"
+                    class="btn-link"
+                    invisible="fsm_person_bridge_count == 0"
+                    groups="fieldservice.group_fsm_user"
+                />
+                <field name="fsm_person_bridge_count" invisible="1"/>
+            </field>
+        </field>
+    </record>
+</odoo>

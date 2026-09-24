@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form_fieldservice_hr_bridge" model="ir.ui.view">
+        <field name="name">hr.employee.form.fieldservice.hr.bridge</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button
+                    name="action_open_fsm_person"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-wrench"
+                    invisible="fsm_person_count == 0"
+                    groups="hr.group_hr_user"
+                >
+                    <field
+                        name="fsm_person_count"
+                        string="FS Worker"
+                        widget="statinfo"
+                    />
+                </button>
+            </div>
+
+            <field name="resource_calendar_id" position="after">
+                <separator string="Field Service" groups="hr.group_hr_user"/>
+                <field name="is_fsm_worker" groups="hr.group_hr_user"/>
+                <field
+                    name="fsm_person_id"
+                    readonly="1"
+                    invisible="not fsm_person_id"
+                    groups="hr.group_hr_user"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
